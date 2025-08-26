@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-notification-task
+      author: you
+      changes:
+        - createTable:
+            tableName: notification_task
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints: { primaryKey: true, nullable: false }
+              - column: { name: chat_id,     type: BIGINT,   constraints: { nullable: false } }
+              - column: { name: message,     type: TEXT,     constraints: { nullable: false } }
+              - column: { name: scheduled_at,type: TIMESTAMP,constraints: { nullable: false } }
+              - column: { name: sent,        type: BOOLEAN,  defaultValueBoolean: false, constraints: { nullable: false } }
+              - column: { name: created_at,  type: TIMESTAMP, defaultValueComputed: CURRENT_TIMESTAMP }
+              - column: { name: updated_at,  type: TIMESTAMP }
+        - createIndex:
+            indexName: idx_notification_task_due
+            tableName: notification_task
+            columns:
+              - column: { name: sent }
+              - column: { name: scheduled_at }
+      rollback:
+        - dropTable:
+            tableName: notification_task
