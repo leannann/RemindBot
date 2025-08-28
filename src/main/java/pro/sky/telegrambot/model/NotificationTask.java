@@ -91,14 +91,4 @@ public class NotificationTask {
         this.updatedAt = updatedAt;
     }
 
-    @Override
-    public String toString() {
-        return "NotificationTask{" +
-                "id=" + id +
-                ", chatId=" + chatId +
-                ", message='" + message + '\'' +
-                ", scheduledAt=" + scheduledAt +
-                ", sent=" + sent +
-                '}';
-    }
 }
