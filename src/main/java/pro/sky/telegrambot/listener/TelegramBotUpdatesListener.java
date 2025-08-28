@@ -85,7 +85,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     ));
                     return;
                 } catch (DateTimeParseException e) {
-                    logger.debug("Не смог распарсить дату: {}", dtStr, e);
+                    logger.warn("Не смог распарсить дату: {}", dtStr, e);
                 } catch (Exception e) {
                     logger.error("Ошибка сохранения задачи", e);
                     telegramBot.execute(new SendMessage(chatId, "Не получилось сохранить задачу, попробуйте ещё раз."));
