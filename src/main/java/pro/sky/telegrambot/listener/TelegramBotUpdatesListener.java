@@ -64,8 +64,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
             Matcher m = NEW_TASK.matcher(text);
             if (m.matches()) {
-                String dtStr = m.group(1);     // дата+время
-                String taskText = m.group(3);  // текст задачи
+                String dtStr = m.group(1);
+                String taskText = m.group(3);
 
                 try {
                     LocalDateTime when = LocalDateTime.parse(dtStr, DTF);
@@ -75,7 +75,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     task.setMessage(taskText);
                     task.setScheduledAt(when);
                     task.setSent(false);
-                    task.setCreatedAt(LocalDateTime.now()); // чтобы не было null
+                    task.setCreatedAt(LocalDateTime.now());
 
                     notificationTaskRepository.save(task);
 
